@@ -21,10 +21,10 @@ artifacts {
 }
 
 dependencies {
-    compile gradleApi()
-    compile localGroovy()
-    compile project(':acpg-lib')
-    compile 'com.android.tools.build:gradle:2.2.0'
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation project(':acpg-lib')
+    implementation 'com.android.tools.build:gradle:3.4.1'
 }
 
 // Use "./gradlew install" to deploy the artifacts to your local maven repository

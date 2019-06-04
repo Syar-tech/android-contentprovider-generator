@@ -1,10 +1,11 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.4.0-alpha6'
+        classpath 'com.android.tools.build:gradle:3.4.0'
     }
 }
 
@@ -12,7 +13,7 @@ allprojects {
     apply plugin: 'maven'
 
     group = 'org.jraf'
-    version = '1.13.1'
+    version = '1.14.0'
 
     repositories {
         mavenLocal()
@@ -20,7 +21,7 @@ allprojects {
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
+task wrap(type: Wrapper) {
+    gradleVersion = '3.4.1'
     distributionType = Wrapper.DistributionType.ALL
 }

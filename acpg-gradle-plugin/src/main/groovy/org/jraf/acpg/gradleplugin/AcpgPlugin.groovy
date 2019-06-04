@@ -25,7 +25,7 @@
 
 package org.jraf.acpg.gradleplugin
 
-import com.android.builder.core.DefaultManifestParser
+//import com.android.builder.core.DefaultManifestParser
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.ProjectConfigurationException
@@ -39,8 +39,14 @@ class AcpgPlugin implements Plugin<Project> {
 
         project.afterEvaluate {
             // Get the packageName from the manifest
-            def manifestParser = new DefaultManifestParser(project.android.sourceSets.main.manifest.srcFile)
-            def packageName = manifestParser.getPackage()
+//
+//            def manifestParser = new DefaultManifestParser(project.android.sourceSets.main.manifest.srcFile, new BooleanSupplier() {
+//                        @Override
+//                        boolean getAsBoolean() {
+//                            return true
+//                        }
+//                    }, null)
+            def packageName = "toto";//manifestParser.getPackage()
 
             project.android[variants(project)].all { variant ->
                 File sourceFolder = project.file("${project.buildDir}/generated/source/acpg/${variant.dirName}")

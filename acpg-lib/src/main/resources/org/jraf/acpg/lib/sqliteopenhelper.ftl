@@ -25,7 +25,7 @@ import ${config.providerJavaPackage}.${entity.packageName}.${entity.nameCamelCas
 public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
     private static final String TAG = ${config.sqliteOpenHelperClassName}.class.getSimpleName();
 
-    public static final String DATABASE_FILE_NAME = "${config.databaseFileName}";
+    public static String sDATABASE_FILE_NAME = "${config.databaseFileName}";
     private static final int DATABASE_VERSION = ${config.databaseVersion};
     private static ${config.sqliteOpenHelperClassName} sInstance;
     private final Context mContext;
@@ -88,7 +88,7 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
     }
 
     private ${config.sqliteOpenHelperClassName}(Context context) {
-        super(context, DATABASE_FILE_NAME, null, DATABASE_VERSION);
+        super(context, sDATABASE_FILE_NAME, null, DATABASE_VERSION);
         mContext = context;
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
         mOpenHelperCallbacks = new ${config.sqliteOpenHelperCallbacksClassName}();
@@ -108,13 +108,35 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private ${config.sqliteOpenHelperClassName}(Context context, DatabaseErrorHandler errorHandler) {
-        super(context, DATABASE_FILE_NAME, null, DATABASE_VERSION, errorHandler);
+        super(context, sDATABASE_FILE_NAME, null, DATABASE_VERSION, errorHandler);
         mContext = context;
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
         mOpenHelperCallbacks = new ${config.sqliteOpenHelperCallbacksClassName}();
         <#else>
         mOpenHelperCallbacks = new BaseSQLiteOpenHelperCallbacks();
         </#if>
+    }
+
+    /*
+    * reset name of bdd to open (bdd will be opened on call to getInstance() if instance has been reset
+    * @see resetInstance()
+    */
+
+    public static void resetDBName(String fileName){
+        if(fileName != null)
+            sDATABASE_FILE_NAME = fileName;
+    }
+
+    public static String getDBName(){
+        return sDATABASE_FILE_NAME;
+    }
+
+    /*
+     * Close connection and reset instance value
+     */
+    public void resetInstance(){
+        sInstance.close();
+        sInstance = null;
     }
 
 
