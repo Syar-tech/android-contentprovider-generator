@@ -4,6 +4,7 @@ ${header}
 package ${config.providerJavaPackage}.base;
 
 // @formatter:off
+import android.support.annotation.NonNull;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -48,4 +49,10 @@ public class BaseSQLiteOpenHelperCallbacks {
     public void onUpgrade(final Context context, final SQLiteDatabase db, final int oldVersion, final int newVersion) {
         if (BuildConfig.${config.debugLogsFieldName}) Log.d(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);
     }
+
+    public static @NonNull String getSavedDbName(Context context, String defaultName){
+        return defaultName;
+
+    }
+
 }

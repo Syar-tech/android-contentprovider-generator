@@ -88,8 +88,9 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
     }
 
     private ${config.sqliteOpenHelperClassName}(Context context) {
-        super(context, sDATABASE_FILE_NAME, null, DATABASE_VERSION);
+        super(context, ${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME), null, DATABASE_VERSION);
         mContext = context;
+        resetDBName(${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME));
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
         mOpenHelperCallbacks = new ${config.sqliteOpenHelperCallbacksClassName}();
         <#else>
@@ -108,8 +109,9 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private ${config.sqliteOpenHelperClassName}(Context context, DatabaseErrorHandler errorHandler) {
-        super(context, sDATABASE_FILE_NAME, null, DATABASE_VERSION, errorHandler);
+        super(context, ${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME), null, DATABASE_VERSION, errorHandler);
         mContext = context;
+        resetDBName(${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME));
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
         mOpenHelperCallbacks = new ${config.sqliteOpenHelperCallbacksClassName}();
         <#else>
@@ -134,8 +136,10 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
     /*
      * Close connection and reset instance value
      */
-    public void resetInstance(){
-        sInstance.close();
+    public static void resetInstance(){
+        if(sInstance != null)
+            sInstance.close();
+
         sInstance = null;
     }
 
