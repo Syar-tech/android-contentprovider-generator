@@ -254,8 +254,18 @@ public class ${entity.nameCamelCase}Selection extends AbstractSelection<${entity
         return this;
     }
 
-    public ${entity.nameCamelCase}Selection <#if field.isForeign>${field.path?uncap_first}${field.nameCamelCase}<#else>${field.nameCamelCaseLowerCase}</#if>EndsWith(String... value) {
+    public ${entity.nameCamelCase}Selection <#if field.isForeign>${field.path?uncap_first}${field.nameCamelCase}<#else>${field.nameCamelCaseLowerCase}</#if>StartsWithTrimmed(String... value) {
+        addStartsWith("TRIM(" + ${field.entity.nameCamelCase}Columns.${field.nameUpperCase} +")" , value);
+        return this;
+    }
+
+    public ${entity.nameCamelCase}Selection <#if field.isForeign>${field.path?uncap_first}${field.nameCamelCase}<#else>${field.nameCamelCaseLowerCase}</#if>EndsWithTrimmed(String... value) {
         addEndsWith(${field.entity.nameCamelCase}Columns.${field.nameUpperCase}, value);
+        return this;
+    }
+
+    public ${entity.nameCamelCase}Selection <#if field.isForeign>${field.path?uncap_first}${field.nameCamelCase}<#else>${field.nameCamelCaseLowerCase}</#if>EndsWith(String... value) {
+        addEndsWith("TRIM(" + ${field.entity.nameCamelCase}Columns.${field.nameUpperCase} +")" , value);
         return this;
     }
     <#break>
