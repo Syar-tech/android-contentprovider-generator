@@ -8,8 +8,8 @@ import java.util.Arrays;
 
 import android.content.ContentValues;
 import android.content.UriMatcher;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteOpenHelper;
+import net.sqlcipher.Cursor;
+import net.sqlcipher.database.SQLiteOpenHelper;
 import android.net.Uri;
 <#if config.useAnnotations>
 import android.support.annotation.NonNull;

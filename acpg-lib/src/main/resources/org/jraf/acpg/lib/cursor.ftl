@@ -6,7 +6,7 @@ package ${config.providerJavaPackage}.${entity.packageName};
 // @formatter:off
 import java.util.Date;
 
-import android.database.Cursor;
+import net.sqlcipher.Cursor;
 <#if config.useAnnotations>
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
