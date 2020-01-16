@@ -41,6 +41,7 @@ public abstract class BaseContentProvider extends ContentProvider {
 
     protected abstract QueryParams getQueryParams(Uri uri, String selection, String[] projection);
     protected abstract boolean hasDebug();
+    protected abstract String getDBPassword();
 
     protected abstract SQLiteOpenHelper createSqLiteOpenHelper();
 
@@ -68,11 +69,10 @@ public abstract class BaseContentProvider extends ContentProvider {
         return false;
     }
 
-
     @Override
     public Uri insert(<#if config.useAnnotations>@NonNull </#if>Uri uri, ContentValues values) {
         String table = uri.getLastPathSegment();
-        long rowId = mSqLiteOpenHelper.getWritableDatabase().insertOrThrow(table, null, values);
+        long rowId = mSqLiteOpenHelper.getWritableDatabase(getDBPassword()).insertOrThrow(table, null, values);
         if (rowId == -1) return null;
         String notify;
         if (((notify = uri.getQueryParameter(QUERY_NOTIFY)) == null || "true".equals(notify))) {
@@ -84,7 +84,7 @@ public abstract class BaseContentProvider extends ContentProvider {
     @Override
     public int bulkInsert(<#if config.useAnnotations>@NonNull </#if>Uri uri, <#if config.useAnnotations>@NonNull </#if>ContentValues[] values) {
         String table = uri.getLastPathSegment();
-        SQLiteDatabase db = mSqLiteOpenHelper.getWritableDatabase();
+        SQLiteDatabase db = mSqLiteOpenHelper.getWritableDatabase(getDBPassword());
         int res = 0;
         db.beginTransaction();
         try {
@@ -110,7 +110,7 @@ public abstract class BaseContentProvider extends ContentProvider {
     @Override
     public int update(<#if config.useAnnotations>@NonNull </#if>Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         QueryParams queryParams = getQueryParams(uri, selection, null);
-        int res = mSqLiteOpenHelper.getWritableDatabase().update(queryParams.table, values, queryParams.selection, selectionArgs);
+        int res = mSqLiteOpenHelper.getWritableDatabase(getDBPassword()).update(queryParams.table, values, queryParams.selection, selectionArgs);
         String notify;
         if (res != 0 && ((notify = uri.getQueryParameter(QUERY_NOTIFY)) == null || "true".equals(notify))) {
             getContext().getContentResolver().notifyChange(uri, null);
@@ -121,7 +121,7 @@ public abstract class BaseContentProvider extends ContentProvider {
     @Override
     public int delete(<#if config.useAnnotations>@NonNull </#if>Uri uri, String selection, String[] selectionArgs) {
         QueryParams queryParams = getQueryParams(uri, selection, null);
-        int res = mSqLiteOpenHelper.getWritableDatabase().delete(queryParams.table, queryParams.selection, selectionArgs);
+        int res = mSqLiteOpenHelper.getWritableDatabase(getDBPassword()).delete(queryParams.table, queryParams.selection, selectionArgs);
         String notify;
         if (res != 0 && ((notify = uri.getQueryParameter(QUERY_NOTIFY)) == null || "true".equals(notify))) {
             getContext().getContentResolver().notifyChange(uri, null);
@@ -136,7 +136,7 @@ public abstract class BaseContentProvider extends ContentProvider {
         String limit = uri.getQueryParameter(QUERY_LIMIT);
         QueryParams queryParams = getQueryParams(uri, selection, projection);
         projection = ensureIdIsFullyQualified(projection, queryParams.table, queryParams.idColumn);
-        Cursor res = mSqLiteOpenHelper.getReadableDatabase().query(queryParams.tablesWithJoins, projection, queryParams.selection, selectionArgs, groupBy,
+        Cursor res = mSqLiteOpenHelper.getReadableDatabase(getDBPassword()).query(queryParams.tablesWithJoins, projection, queryParams.selection, selectionArgs, groupBy,
                 having, sortOrder == null ? queryParams.orderBy : sortOrder, limit);
         res.setNotificationUri(getContext().getContentResolver(), uri);
         return res;
@@ -161,7 +161,7 @@ public abstract class BaseContentProvider extends ContentProvider {
         for (ContentProviderOperation operation : operations) {
             urisToNotify.add(operation.getUri());
         }
-        SQLiteDatabase db = mSqLiteOpenHelper.getWritableDatabase();
+        SQLiteDatabase db = mSqLiteOpenHelper.getWritableDatabase(getDBPassword());
         db.beginTransaction();
         try {
             int numOperations = operations.size();

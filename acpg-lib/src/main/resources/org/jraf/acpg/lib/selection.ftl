@@ -8,7 +8,7 @@ import java.util.Date;
 
 import android.content.Context;
 import android.content.ContentResolver;
-import net.sqlcipher.Cursor;
+import android.database.Cursor;
 import android.net.Uri;
 <#if config.useSupportLibrary>
 import androidx.loader.content.CursorLoader;

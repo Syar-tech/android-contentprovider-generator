@@ -10,7 +10,7 @@ import java.util.List;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import net.sqlcipher.Cursor;
+import android.database.Cursor;
 import android.net.Uri;
 <#if config.useSupportLibrary>
 import androidx.loader.content.CursorLoader;

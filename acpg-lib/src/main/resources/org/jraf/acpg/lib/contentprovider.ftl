@@ -65,6 +65,11 @@ public class ${config.providerClassName} extends BaseContentProvider {
     }
 
     @Override
+    protected String getDBPassword() {
+        return "";
+    }
+
+    @Override
     public String getType(Uri uri) {
         int match = URI_MATCHER.match(uri);
         switch (match) {
