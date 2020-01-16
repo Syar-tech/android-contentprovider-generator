@@ -6,10 +6,10 @@ package ${config.providerJavaPackage};
 // @formatter:off
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
-import android.database.DefaultDatabaseErrorHandler;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import net.sqlcipher.DatabaseErrorHandler;
+import net.sqlcipher.DefaultDatabaseErrorHandler;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteOpenHelper;
 import android.os.Build;
 import android.util.Log;
 

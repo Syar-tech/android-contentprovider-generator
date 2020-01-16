@@ -6,7 +6,7 @@ package ${config.providerJavaPackage}.base;
 // @formatter:off
 import androidx.annotation.NonNull;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabase;
 
 import android.util.Log;
 
@@ -20,7 +20,7 @@ public class BaseSQLiteOpenHelperCallbacks {
 
     /**
      * Called when the database has been opened.
-     * @see android.database.sqlite.SQLiteOpenHelper#onOpen(SQLiteDatabase) onOpen
+     * @see net.sqlcipher.database.SQLiteOpenHelper#onOpen(SQLiteDatabase) onOpen
      */
     public void onOpen(Context context, SQLiteDatabase db) {
         if (BuildConfig.${config.debugLogsFieldName}) Log.d(TAG, "onOpen");
@@ -28,7 +28,7 @@ public class BaseSQLiteOpenHelperCallbacks {
 
     /**
      * Called before the database tables are created.
-     * @see android.database.sqlite.SQLiteOpenHelper#onCreate(SQLiteDatabase) onCreate
+     * @see net.sqlcipher.database.SQLiteOpenHelper#onCreate(SQLiteDatabase) onCreate
      */
     public void onPreCreate(Context context, SQLiteDatabase db) {
         if (BuildConfig.${config.debugLogsFieldName}) Log.d(TAG, "onPreCreate");
@@ -36,7 +36,7 @@ public class BaseSQLiteOpenHelperCallbacks {
 
     /**
      * Called after the database tables have been created.
-     * @see android.database.sqlite.SQLiteOpenHelper#onCreate(SQLiteDatabase) onCreate
+     * @see net.sqlcipher.database.SQLiteOpenHelper#onCreate(SQLiteDatabase) onCreate
      */
     public void onPostCreate(Context context, SQLiteDatabase db) {
         if (BuildConfig.${config.debugLogsFieldName}) Log.d(TAG, "onPostCreate");
@@ -44,7 +44,7 @@ public class BaseSQLiteOpenHelperCallbacks {
 
     /**
      * Called when the database needs to be upgraded.
-     * @see android.database.sqlite.SQLiteOpenHelper#onUpgrade(Context, SQLiteDatabase, int, int) onUpgrade
+     * @see net.sqlcipher.database.SQLiteOpenHelper#onUpgrade(Context, SQLiteDatabase, int, int) onUpgrade
      */
     public void onUpgrade(final Context context, final SQLiteDatabase db, final int oldVersion, final int newVersion) {
         if (BuildConfig.${config.debugLogsFieldName}) Log.d(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);

@@ -13,9 +13,9 @@ import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentValues;
 import android.content.OperationApplicationException;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import net.sqlcipher.Cursor;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteOpenHelper;
 import android.net.Uri;
 import android.provider.BaseColumns;
 <#if config.useAnnotations>
@@ -51,7 +51,7 @@ public abstract class BaseContentProvider extends ContentProvider {
         if (hasDebug()) {
             // Enable logging of SQL statements as they are executed.
             try {
-                Class<?> sqliteDebugClass = Class.forName("android.database.sqlite.SQLiteDebug");
+                Class<?> sqliteDebugClass = Class.forName("net.sqlcipher.database.SQLiteDebug");
                 Field field = sqliteDebugClass.getDeclaredField("DEBUG_SQL_STATEMENTS");
                 field.setAccessible(true);
                 field.set(null, true);
