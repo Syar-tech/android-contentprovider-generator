@@ -7,8 +7,8 @@ package ${config.providerJavaPackage}.base;
 import java.util.Date;
 import java.util.HashMap;
 
-import net.sqlcipher.Cursor;
-import net.sqlcipher.CursorWrapper;
+import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.provider.BaseColumns;
 
 @SuppressWarnings({"WeakerAccess", "unused"})

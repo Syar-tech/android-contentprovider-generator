@@ -109,7 +109,7 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private ${config.sqliteOpenHelperClassName}(Context context, DatabaseErrorHandler errorHandler) {
-        super(context, ${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME), null, DATABASE_VERSION, errorHandler);
+        super(context, ${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME), null, DATABASE_VERSION, null);
         mContext = context;
         resetDBName(${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME));
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
