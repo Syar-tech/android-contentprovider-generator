@@ -13,7 +13,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 <#if config.useSupportLibrary>
-import android.support.v4.content.CursorLoader;
+import androidx.loader.content.CursorLoader;
 <#else>
 import android.content.CursorLoader;
 </#if>

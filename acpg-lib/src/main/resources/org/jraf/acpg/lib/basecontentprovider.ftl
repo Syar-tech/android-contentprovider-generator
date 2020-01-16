@@ -19,7 +19,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.provider.BaseColumns;
 <#if config.useAnnotations>
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 </#if>
 import android.util.Log;
 

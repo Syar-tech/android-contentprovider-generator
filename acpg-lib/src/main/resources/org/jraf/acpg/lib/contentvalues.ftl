@@ -10,8 +10,8 @@ import android.content.Context;
 import android.content.ContentResolver;
 import android.net.Uri;
 <#if config.useAnnotations>
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 </#if>
 
 import ${config.providerJavaPackage}.base.AbstractContentValues;

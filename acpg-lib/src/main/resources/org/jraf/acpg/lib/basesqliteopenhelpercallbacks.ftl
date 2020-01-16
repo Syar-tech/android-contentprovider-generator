@@ -4,7 +4,7 @@ ${header}
 package ${config.providerJavaPackage}.base;
 
 // @formatter:off
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 

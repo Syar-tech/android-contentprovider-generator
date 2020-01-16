@@ -12,7 +12,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 <#if config.useAnnotations>
-import android.support.annotation.NonNull;
+import androidx..annotation.NonNull;
 </#if>
 import android.util.Log;
 

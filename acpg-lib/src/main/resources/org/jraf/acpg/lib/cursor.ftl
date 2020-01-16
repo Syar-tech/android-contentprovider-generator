@@ -8,8 +8,8 @@ import java.util.Date;
 
 import android.database.Cursor;
 <#if config.useAnnotations>
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 </#if>
 
 import ${config.providerJavaPackage}.base.AbstractCursor;

@@ -9,8 +9,8 @@ import ${config.providerJavaPackage}.base.BaseModel;
 import java.util.Date;
 <#if config.useAnnotations>
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 </#if>
 
 /**
