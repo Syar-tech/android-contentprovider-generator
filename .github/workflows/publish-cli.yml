@@ -18,7 +18,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Generate CLI jar
-        run: ./gradlew cli:shadowJar
+        run: ./gradlew -Pv=${{ github.tag }} cli:shadowJar
       - name: Checkout code
         uses: actions/checkout@master
       - name: Create Release

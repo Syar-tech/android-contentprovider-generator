@@ -29,7 +29,11 @@ dependencies {
 shadowJar {
     baseName = 'acpg-cli'
     classifier = null
-    version = project.version
+    try {
+        version = v
+    } catch (MissingPropertyException e) {
+        version = project.version
+    }
 }
 
 //// Use "./gradlew cli:shadowJar" to create the jar including dependencies
