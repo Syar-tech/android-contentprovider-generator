@@ -18,7 +18,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Generate CLI jar
-        run: ./gradlew -Pv=${{ github.ref:10 }} cli:shadowJar
+        run: ./gradlew -Pv=$(echo ${GITHUB_REF:10}) cli:shadowJar
       - name: Checkout code
         uses: actions/checkout@master
       - name: Create Release
