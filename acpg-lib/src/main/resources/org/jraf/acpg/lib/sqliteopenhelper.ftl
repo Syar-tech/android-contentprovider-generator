@@ -93,7 +93,7 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
         resetDBName(${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME));
         //https://www.zetetic.net/sqlcipher/sqlcipher-for-android/
         //The call to SQLiteDatabase.loadLibs(this) must occur before any other database operation. The following is a usage example in Java
-        SQLiteDatabase.loadLibs(ctx);
+        SQLiteDatabase.loadLibs(context);
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
         mOpenHelperCallbacks = new ${config.sqliteOpenHelperCallbacksClassName}();
         <#else>
@@ -117,7 +117,7 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
         resetDBName(${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME));
         //https://www.zetetic.net/sqlcipher/sqlcipher-for-android/
         //The call to SQLiteDatabase.loadLibs(this) must occur before any other database operation. The following is a usage example in Java
-        SQLiteDatabase.loadLibs(ctx);
+        SQLiteDatabase.loadLibs(context);
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
         mOpenHelperCallbacks = new ${config.sqliteOpenHelperCallbacksClassName}();
         <#else>
