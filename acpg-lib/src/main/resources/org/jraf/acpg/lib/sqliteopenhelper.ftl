@@ -91,6 +91,9 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
         super(context, ${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME), null, DATABASE_VERSION);
         mContext = context;
         resetDBName(${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME));
+        //https://www.zetetic.net/sqlcipher/sqlcipher-for-android/
+        //The call to SQLiteDatabase.loadLibs(this) must occur before any other database operation. The following is a usage example in Java
+        SQLiteDatabase.loadLibs(ctx);
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
         mOpenHelperCallbacks = new ${config.sqliteOpenHelperCallbacksClassName}();
         <#else>
@@ -112,6 +115,9 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
         super(context, ${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME), null, DATABASE_VERSION, null);
         mContext = context;
         resetDBName(${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME));
+        //https://www.zetetic.net/sqlcipher/sqlcipher-for-android/
+        //The call to SQLiteDatabase.loadLibs(this) must occur before any other database operation. The following is a usage example in Java
+        SQLiteDatabase.loadLibs(ctx);
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
         mOpenHelperCallbacks = new ${config.sqliteOpenHelperCallbacksClassName}();
         <#else>
@@ -167,6 +173,8 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
             setForeignKeyConstraintsEnabled(db);
         }
         </#if>
+        // https://discuss.zetetic.net/t/what-is-the-purpose-of-pragma-cipher-memory-security/3953/4
+        db.rawExecSQL("PRAGMA cipher_memory_security = OFF");
         mOpenHelperCallbacks.onOpen(mContext, db);
     }
 
