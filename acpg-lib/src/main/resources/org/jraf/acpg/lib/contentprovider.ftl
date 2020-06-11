@@ -30,7 +30,7 @@ public class ${config.providerClassName} extends BaseContentProvider {
     private static final String TYPE_CURSOR_ITEM = "vnd.android.cursor.item/";
     private static final String TYPE_CURSOR_DIR = "vnd.android.cursor.dir/";
 
-	<#assign authority = "\"" + config.authority?replace(r"${applicationId}", "\" + BuildConfig.APPLICATION_ID + \"") + "\"">
+	<#assign authority = "\"" + config.authority?replace(r"${applicationId}", "\" + BuildConfig.LIBRARY_PACKAGE_NAME + \"") + "\"">
 	<#assign authority = authority?replace(r'^"* \+ (.*?)', r"$1", "r")?replace(r'(.*?) \+ "*$', r"$1", "r")>
     public static final String AUTHORITY = ${authority};
     public static final String CONTENT_URI_BASE = "content://" + AUTHORITY;
