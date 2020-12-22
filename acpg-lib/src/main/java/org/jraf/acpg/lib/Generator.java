@@ -123,6 +123,13 @@ public class Generator {
         template.process(root, out);
         IOUtils.closeQuietly(out);
 
+        // AbstractException
+        template = getFreeMarkerConfig().getTemplate("abstractdumpexception.ftl");
+        outputFile = new File(baseClassesDir, "AbstractDumpException.java");
+        out = new OutputStreamWriter(new FileOutputStream(outputFile));
+        template.process(root, out);
+        IOUtils.closeQuietly(out);
+
         // AbstractContentValuesWrapper
         template = getFreeMarkerConfig().getTemplate("abstractcontentvalues.ftl");
         outputFile = new File(baseClassesDir, "AbstractContentValues.java");
@@ -161,6 +168,14 @@ public class Generator {
             out = new OutputStreamWriter(new FileOutputStream(outputFile));
             root.put("entity", entity);
             template = getFreeMarkerConfig().getTemplate("cursor.ftl");
+            template.process(root, out);
+            IOUtils.closeQuietly(out);
+
+            // Dump Exception wrapper
+            outputFile = new File(entityDir, entity.getNameCamelCase() + "DumpException.java");
+            out = new OutputStreamWriter(new FileOutputStream(outputFile));
+            root.put("entity", entity);
+            template = getFreeMarkerConfig().getTemplate("dumpexception.ftl");
             template.process(root, out);
             IOUtils.closeQuietly(out);
 
