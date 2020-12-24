@@ -173,6 +173,8 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
             setForeignKeyConstraintsEnabled(db);
         }
         </#if>
+        // https://discuss.zetetic.net/t/what-is-the-purpose-of-pragma-cipher-memory-security/3953/4
+        db.rawExecSQL("PRAGMA cipher_memory_security = OFF");
         mOpenHelperCallbacks.onOpen(mContext, db);
     }
 
