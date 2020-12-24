@@ -91,6 +91,9 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
         super(context, ${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME), null, DATABASE_VERSION);
         mContext = context;
         resetDBName(${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME));
+        //https://www.zetetic.net/sqlcipher/sqlcipher-for-android/
+        //The call to SQLiteDatabase.loadLibs(this) must occur before any other database operation. The following is a usage example in Java
+        SQLiteDatabase.loadLibs(context);
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
         mOpenHelperCallbacks = new ${config.sqliteOpenHelperCallbacksClassName}();
         <#else>
@@ -112,6 +115,9 @@ public class ${config.sqliteOpenHelperClassName} extends SQLiteOpenHelper {
         super(context, ${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME), null, DATABASE_VERSION, null);
         mContext = context;
         resetDBName(${config.sqliteOpenHelperCallbacksClassName}.getSavedDbName(context, sDATABASE_FILE_NAME));
+        //https://www.zetetic.net/sqlcipher/sqlcipher-for-android/
+        //The call to SQLiteDatabase.loadLibs(this) must occur before any other database operation. The following is a usage example in Java
+        SQLiteDatabase.loadLibs(context);
         <#if (config.sqliteOpenHelperCallbacksClassName)??>
         mOpenHelperCallbacks = new ${config.sqliteOpenHelperCallbacksClassName}();
         <#else>
